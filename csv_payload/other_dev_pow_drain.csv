@@ -1,0 +1,12 @@
+﻿day_type;hours;power
+robocze;00:00-04:59;0.5
+robocze;05:00-07:59;3
+robocze;08:00-09:59;2
+robocze;10:00-15:59;1
+robocze;16:00-19:59;2
+robocze;20:00-23:59;1
+wolne;00:00-07:59;0.5
+wolne;08:00-11:59;3
+wolne;12:00-16:59;1
+wolne;17:00-23:59;2
+wakacje;00:00-23:59;0.5
