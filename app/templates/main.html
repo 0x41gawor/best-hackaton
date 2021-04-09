@@ -75,7 +75,7 @@
                 color: rgb(255, 255, 255);
               "
             >
-              #561726292
+              #{{data.id}}
             </h3>
           </div>
         </div>
@@ -108,7 +108,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>A</strong>
+                        <strong>{{data.curr_mode}}</strong>
                       </p>
                     </div>
                   </div>
@@ -135,7 +135,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>20 °C</strong>
+                        <strong>{{data.in_temp}} °C</strong>
                       </p>
                     </div>
                   </div>
@@ -164,7 +164,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>10 °C</strong>
+                        <strong>{{data.out_temp}} °C</strong>
                       </p>
                     </div>
                   </div>
@@ -191,7 +191,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>57 %</strong>
+                        <strong>{{data.charge}} %</strong>
                       </p>
                     </div>
                   </div>
@@ -218,7 +218,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>90 %</strong>
+                        <strong>{{data.sun_level}} %</strong>
                       </p>
                     </div>
                   </div>
@@ -245,7 +245,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>100 kW</strong>
+                        <strong>{{data.power_usage}} kW</strong>
                       </p>
                     </div>
                   </div>
@@ -272,7 +272,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>0.5 PLN</strong>
+                        <strong>{{data.cost}} PLN</strong>
                       </p>
                     </div>
                   </div>
@@ -299,7 +299,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>50 L</strong>
+                        <strong>{{data.hot_water}} L</strong>
                       </p>
                     </div>
                   </div>
@@ -326,7 +326,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>5 kW</strong>
+                        <strong>{{data.pv_eff}} kW</strong>
                       </p>
                     </div>
                   </div>
