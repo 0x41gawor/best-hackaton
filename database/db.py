@@ -8,19 +8,19 @@ def setup():
     create_table('home',
                  'id integer primary key, '
                  'max_heating_pow integer, '
-                 'water_warmer_pow integerm '
-                 'hot_water_capacity integer, '
+                 'water_warmer_pow integer, '
+                 'hot_water_cap integer, '
                  'rooms_heat_pow text, '
                  'battery_capacity integer, '
                  'battery_max_pow_drain integer, '
                  'max_charging_pow integer, '
                  'max_return_pow integer')
 
-    create_table('admin',
+    create_table('user',
                  'id integer primary key, '
                  'login text, '
                  'password text, '
-                 'is_super integer, '
+                 'is_admin integer, '
                  'foreign key(id) references home(home_id)')
 
     create_table('avg_heat_power',
@@ -117,7 +117,7 @@ def create_home():
     connection = sqlite3.connect('database.db')
     c = connection.cursor()
 
-    s = '10, 6, 150, "1kW, 1kW, 1,5kW, 1,5kW, 2kW, 2kW, 3kW", 7, 2, 1, 5'
+    s = '0, 10, 6, 150, "1kW, 1kW, 1,5kW, 1,5kW, 2kW, 2kW, 3kW", 7, 2, 1, 5'
 
     c.execute(f"INSERT into home VALUES ({s})")
 
@@ -214,11 +214,11 @@ def get_fotov_efficiency(month, hour, clouds):
 
 if __name__ == '__main__':
     pass
-    # setup()
+    setup()
     # insert_csv()
     # create_home()
-    # print(get_expected_temp('robocze', '06:00'))
-    # print(get_other_dev_pow_drain('robocze', '16:30'))
-    # print(get_avg_heat_power(12))
-    # print(get_electricity_prices(12, 'robocze', '12:00'))
-    # print(get_fotov_efficiency(12, '15:00', 90))
+    print(get_expected_temp('robocze', '06:00'))
+    print(get_other_dev_pow_drain('robocze', '16:30'))
+    print(get_avg_heat_power(12))
+    print(get_electricity_prices(12, 'robocze', '12:00'))
+    print(get_fotov_efficiency(12, '15:00', 90))
