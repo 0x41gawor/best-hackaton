@@ -94,5 +94,4 @@ def run():
     # ile potrzeba na wode mocy w tej godzinie = 
     # ile potrzeba na ogrzewanie
     # ile daje nam foto
-    water_heating_power_required = get_water_heating_power_required(hour, 0))
-    
+    water_heating_power_required = get_water_heating_power_required(hour, 0)
