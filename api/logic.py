@@ -2,9 +2,15 @@ import threading
 from database import db
 from datetime import datetime
 
+from random import randrange
+
 from weather_client import get_weather
 
+
 current_in_temp = 20
+current_water_amount = 150
+todays_baths_times = []
+todays_baths_water = []
 
 # code from http://stackoverflow.com/a/14035296/4592067
 def set_interval(func, sec):
@@ -40,7 +46,35 @@ def get_input_values():
     clouds = 100 - clouds
     return hour, day_type, month, temp, clouds
 
+def get_water_heating_power_required(hour, home_id):
+    boiler_capacity = db.get_boiler_capacity(home_id)
+    # We are hardcoing here 25 degrees as diffrence betwee cold and hot water
+    power_for_one_hour = 4200 * boiler_capacity[0] * 25 / 3600
+    bath_times, baths_water = get_baths()
+    print(bath_times)
+    print(baths_water)
+    if hour in bath_times:
+        print("jest")
+    else:
+        print(" nie ma")
+
+# Run this at 8 o COCK
+def set_baths_for_today():
+    water_used = 0
+    baths = 0
+    while water_used < 135:
+        r = randrange(30, 60)
+        water_used += r
+        todays_baths_water.append(r)
+        print(water_used)
+        baths += 1
+    baths += 1
+    todays_baths_water.append(180 - water_used)
+    for i in range(baths):
+        todays_baths_times.append(randrange(6, 24))
     
+def get_baths():
+       return todays_baths_times, todays_baths_water
     
 def run():
     # INPUT DATA
@@ -53,7 +87,12 @@ def run():
     maintain_in_temp_pow, increase_temp_pow, temp_drop_time,  = db.get_avg_heat_power(current_out_temp)
     print(f"current temp: {current_in_temp}, expected_temp: {expected_temp}")
     # ALGORITHM
-     print('ALGORITHM')
-
-
+    print('ALGORITHM')
+    # B i l a n ce
+    # temp
+    temp_diff = expected_temp - current_in_temp
+    # ile potrzeba na wode = 
+    # ile potrzeba na ogrzewanie
+    # ile daje nam foto
+    get_water_heating_power_required(hour, 0)
     
