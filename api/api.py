@@ -7,6 +7,7 @@ from model import DATA
 from logic import run
 from logic import set_interval
 from logic import db_setup
+from logic import set_baths_for_today
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -36,8 +37,7 @@ api.add_resource(Homes, '/homes')
 api.add_resource(Home, '/home/<id>')
 
 if __name__ == "__main__":
+    set_baths_for_today()
     set_interval(run, 2)
-    print("main1")
     # db_setup()
-    print("main2")
     app.run(port=3000, use_reloader=False)

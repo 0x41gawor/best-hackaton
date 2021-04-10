@@ -159,10 +159,11 @@ def get_avg_heat_power(temp):
     c = connection.cursor()
     c.execute(f'SELECT * FROM avg_heat_power where min_temp<="{temp}" and max_temp>="{temp}"')
     results = c.fetchone()
+    rs = (results[3], results[4], results[5])
     connection.commit()
     connection.close()
 
-    return results
+    return rs
 
 
 def get_electricity_prices(month, day, time):
@@ -225,7 +226,13 @@ def get_is_holiday(home_id):
     else:
         return False
 
-
+def get_boiler_capacity(home_id):
+    connection = sqlite3.connect('database.db')
+    c = connection.cursor()
+    c.execute(f'SELECT hot_water_cap FROM home WHERE id="{home_id}"')
+    result = c.fetchone()
+    connection.close()
+    return result
 
 if __name__ == '__main__':
     pass
