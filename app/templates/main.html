@@ -27,7 +27,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
     />
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.min.css') }}"
@@ -48,7 +47,7 @@
         "
       >
         <div class="row" style="height: 76px">
-          <div class="col-6 col-sm-6 col-lg-6">
+          <div class="col-6 col-sm-4 col-lg-6">
             <h3
               style="
                 padding-top: 0px;
@@ -65,18 +64,12 @@
               >SHEM
             </h3>
           </div>
-          <div class="col-6 col-sm-6 col-lg-6 text-right">
-            <h3
-              style="
-                padding-top: 7px;
-                margin-bottom: 0px;
-                margin-top: 10px;
-                font-size: 22px;
-                color: rgb(255, 255, 255);
-              "
-            >
-              #{{data.id}}
-            </h3>
+          <div class="col-6 col-sm-8 col-lg-6 text-right">
+            <a href="/logout">
+              <button style="margin-top: 16px" class="btn btn-light">
+                Log out
+              </button>
+            </a>
           </div>
         </div>
       </div>
