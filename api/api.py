@@ -37,7 +37,5 @@ api.add_resource(Home, '/home/<id>')
 
 if __name__ == "__main__":
     set_interval(run, 2)
-    print("main1")
     # db_setup()
-    print("main2")
     app.run(port=3000, use_reloader=False)
