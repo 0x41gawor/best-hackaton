@@ -1,16 +1,14 @@
 from flask import Flask
 from flask import render_template, url_for, redirect, request
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
-from config import Config
-from forms import LoginForm
 from models import User
 
 import json
 import requests as r
 
 app = Flask(__name__)
-app.config.from_object(Config)
 app.config["DEBUG"] = True
+app.config["SECRET_KEY"] = "BETON-POLSKA-GUROM"
 login = LoginManager(app)
 
 @login.user_loader
