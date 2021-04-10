@@ -1,6 +1,6 @@
 ﻿day;start_hour;end_hour;temperature
-robocze_noc;00:00;04:59;20
-robocze_dzien;05:00;23:59;23
-wolne_noc;00:00;07:59;20
-wolne_dzien;08:00;23:59;23
+robocze;00:00;04:59;20
+robocze;05:00;23:59;23
+wolne;00:00;07:59;20
+wolne;08:00;23:59;23
 wakacje;00:00;23:59;12
