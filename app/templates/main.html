@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>SHEM</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.min.css') }}"
+    />
+  </head>
+
+  <body style="background-color: rgb(241, 241, 241)">
+    <div class="" style="background-color: rgba(0, 0, 0, 0)">
+      <div
+        class=""
+        style="
+          background-color: #005ec3;
+          padding-bottom: 0px;
+          padding-top: 7px;
+          padding-left: 10px;
+          min-width: auto;
+          padding-right: 10px;
+        "
+      >
+        <div class="row" style="height: 76px">
+          <div class="col-6 col-sm-4 col-lg-6">
+            <h3
+              style="
+                padding-top: 0px;
+                margin-bottom: 0px;
+                color: rgb(255, 255, 255);
+                margin-top: 7px;
+              "
+            >
+              <span class="fa-stack" style="color: rgb(92, 139, 186)"
+                ><i
+                  class="fa fa-home fa-stack-1x fa-inverse"
+                  style="color: rgb(255, 255, 255); margin-top: -4px"
+                ></i></span
+              >SHEM
+            </h3>
+          </div>
+          <div class="col-6 col-sm-8 col-lg-6 text-right">
+            <a href="/logout">
+              <button style="margin-top: 16px" class="btn btn-light">
+                Log out
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="card-body"
+        style="
+          height: auto;
+          max-height: auto;
+          background-color: rgba(0, 0, 0, 0);
+        "
+      >
+        <div class="row" style="height: 215px">
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i class="fas fa-cog fa-stack-1x fa-inverse"></i
+                  ></span>
+                </div>
+                <h4 class="text-center">Current Mode</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.curr_mode}}</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i class="fa fa-thermometer-3 fa-stack-1x fa-inverse"></i
+                  ></span>
+                </div>
+                <h4 class="text-center">Inside Temperature</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.in_temp}} °C</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i
+                      class="fa fa-thermometer-quarter fa-stack-1x fa-inverse"
+                    ></i
+                  ></span>
+                </div>
+                <h4 class="text-center">Outside Temperature</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.out_temp}} °C</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i class="fa fa-battery-3 fa-stack-1x fa-inverse"></i
+                  ></span>
+                </div>
+                <h4 class="text-center">Battery Charge</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.charge}} %</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i class="fa fa-sun-o fa-stack-1x fa-inverse"></i
+                  ></span>
+                </div>
+                <h4 class="text-center">Sunlight Level</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.sun_level}} %</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i class="fas fa-bolt fa-stack-1x fa-inverse"></i
+                  ></span>
+                </div>
+                <h4 class="text-center">Power Usage</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.power_usage}} kW</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i class="fa fa-money fa-stack-1x fa-inverse"></i
+                  ></span>
+                </div>
+                <h4 class="text-center">Current Cost</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.cost}} PLN</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i class="icon ion-waterdrop fa-stack-1x fa-inverse"></i
+                  ></span>
+                </div>
+                <h4 class="text-center">Hot Water Amount</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.hot_water}} L</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4" style="height: 215px">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <span
+                    class="fa-stack fa-lg fa-2x"
+                    style="color: rgb(18, 255, 127)"
+                    ><i
+                      class="fa fa-circle fa-stack-2x text-primary"
+                      style="color: rgb(86, 198, 198)"
+                    ></i
+                    ><i class="far fa-lightbulb fa-stack-1x fa-inverse"></i
+                  ></span>
+                </div>
+                <h4 class="text-center">PV Efficiency</h4>
+                <div class="row">
+                  <div class="col">
+                    <div>
+                      <p class="text-center" style="font-size: 30px">
+                        <strong>{{data.pv_eff}} kW</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
