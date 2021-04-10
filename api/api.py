@@ -4,6 +4,10 @@ from datetime import datetime
 
 from model import DATA
 
+from logic import run
+from logic import set_interval
+from logic import db_setup
+
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 api = Api(app)
@@ -32,4 +36,8 @@ api.add_resource(Homes, '/homes')
 api.add_resource(Home, '/home/<id>')
 
 if __name__ == "__main__":
-    app.run(port=3000)
+    set_interval(run, 2)
+    print("main1")
+    # db_setup()
+    print("main2")
+    app.run(port=3000, use_reloader=False)
