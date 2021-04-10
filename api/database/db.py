@@ -98,7 +98,19 @@ def insert(table, arguments):
 
 
 def insert_csv():
-    print("ELO")
+    connection = sqlite3.connect('database.db')
+    c = connection.cursor()
+
+    c.execute(f"SELECT * from expected_temp")
+    s = c.fetchall()
+    if len(s) != 0:
+        return
+    
+    create_home()
+
+    connection.commit()
+    connection.close()
+
     files = ['../csv_payload/expected_temp.csv',
              '../csv_payload/electricity_prices.csv',
              '../csv_payload/fotov_efficiency.csv',
@@ -237,8 +249,7 @@ def get_boiler_capacity(home_id):
 if __name__ == '__main__':
     pass
     setup()
-    # insert_csv()
-    # create_home()
+    insert_csv()
     print(get_expected_temp('robocze', '06:00'))
     print(get_other_dev_pow_drain('robocze', '16:30'))
     print(get_avg_heat_power(12))

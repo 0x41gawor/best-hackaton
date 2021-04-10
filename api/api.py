@@ -39,5 +39,5 @@ api.add_resource(Home, '/home/<id>')
 if __name__ == "__main__":
     set_baths_for_today()
     set_interval(run, 2)
-    # db_setup()
-    app.run(port=3000, use_reloader=False)
+    db_setup()
+    app.run(port=3000)

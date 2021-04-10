@@ -2,7 +2,7 @@ import threading
 from database import db
 from datetime import datetime
 
-from random import randrange
+import random
 
 from weather_client import get_weather
 
@@ -24,7 +24,6 @@ def set_interval(func, sec):
 def db_setup():
     db.setup()
     db.insert_csv()
-    db.create_home()
 
 # Return current: hour, day_type, month, temperature and %clouds
 def get_input_values():
@@ -53,25 +52,26 @@ def get_water_heating_power_required(hour, home_id):
     bath_times, baths_water = get_baths()
     print(bath_times)
     print(baths_water)
-    if hour in bath_times:
-        print("jest")
+    index = todays_baths_times.count(hour)
+    if index > 0:
+        return todays_baths_water[index]/150*3.6
     else:
-        print(" nie ma")
+        return 0
 
-# Run this at 8 o COCK
+# Run this at 8 o ClOCK
 def set_baths_for_today():
     water_used = 0
     baths = 0
     while water_used < 135:
-        r = randrange(30, 60)
+        r = random.randrange(30, 60)
         water_used += r
         todays_baths_water.append(r)
         print(water_used)
         baths += 1
     baths += 1
     todays_baths_water.append(180 - water_used)
-    for i in range(baths):
-        todays_baths_times.append(randrange(6, 24))
+    todays_baths_times =  random.sample(range(8,24), baths)
+
     
 def get_baths():
        return todays_baths_times, todays_baths_water
@@ -91,8 +91,8 @@ def run():
     # B i l a n ce
     # temp
     temp_diff = expected_temp - current_in_temp
-    # ile potrzeba na wode = 
+    # ile potrzeba na wode mocy w tej godzinie = 
     # ile potrzeba na ogrzewanie
     # ile daje nam foto
-    get_water_heating_power_required(hour, 0)
+    water_heating_power_required = get_water_heating_power_required(hour, 0))
     
