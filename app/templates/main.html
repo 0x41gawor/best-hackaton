@@ -28,6 +28,16 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.min.css') }}"
     />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+      integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body
@@ -38,6 +48,59 @@
       max-width: 100%;
     "
   >
+    <script type="text/javascript" charset="utf-8">
+      var socket = io();
+      socket.on("connect", function () {
+        home_id = document.getElementById("home_id").textContent;
+        socket.emit("connect_event", { id: home_id });
+        makeInterval();
+      });
+
+      socket.on("json", function (json) {
+        document.getElementById("curr_mode").innerText = json["curr_mode"];
+        document.getElementById("in_temp").innerText = json["in_temp"] + " °C";
+        document.getElementById("out_temp").innerText =
+          json["out_temp"] + " °C";
+        document.getElementById("charge").innerText = json["charge"] + " %";
+        document.getElementById("sun_level").innerText =
+          json["sun_level"] + " %";
+        document.getElementById("power_usage").innerText =
+          json["power_usage"] + " kW";
+        document.getElementById("cost").innerText = json["cost"] + " PLN";
+        document.getElementById("hot_water").innerText =
+          json["hot_water"] + " L";
+        document.getElementById("pv_eff").innerText = json["pv_eff"] + " kW";
+      });
+
+      function update() {
+        socket.send("update");
+
+        setTimeout(() => {
+          makeInterval();
+        }, 2000);
+      }
+
+      function makeInterval() {
+        var d = new Date();
+        var min = d.getMinutes();
+        var sec = d.getSeconds();
+
+        var targetM = 05;
+
+        if (min == targetM && sec == 00) update();
+        else {
+          var secs = 0;
+          if (min >= targetM) {
+            var secs = 60 * (targetM + 60 - min) - sec;
+          } else {
+            var secs = 60 * (targetM - min) - sec;
+          }
+          setTimeout(update, secs * 1000);
+        }
+      }
+    </script>
+
+    <p id="home_id" style="display: none">{{data.id}}</p>
     <div class="container-fluid" style="background-color: #007bff">
       <div class="row" style="padding: 5px 0px">
         <div class="col-6">
@@ -93,7 +156,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.curr_mode}}</strong>
+                        <strong id="curr_mode">{{data.curr_mode}}</strong>
                       </p>
                     </div>
                   </div>
@@ -120,7 +183,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.in_temp}} °C</strong>
+                        <strong id="in_temp">{{data.in_temp}} °C</strong>
                       </p>
                     </div>
                   </div>
@@ -149,7 +212,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.out_temp}} °C</strong>
+                        <strong id="out_temp">{{data.out_temp}} °C</strong>
                       </p>
                     </div>
                   </div>
@@ -176,7 +239,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.charge}} %</strong>
+                        <strong id="charge">{{data.charge}} %</strong>
                       </p>
                     </div>
                   </div>
@@ -203,7 +266,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.sun_level}} %</strong>
+                        <strong id="sun_level">{{data.sun_level}} %</strong>
                       </p>
                     </div>
                   </div>
@@ -230,7 +293,9 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.power_usage}} kW</strong>
+                        <strong id="power_usage"
+                          >{{data.power_usage}} kW</strong
+                        >
                       </p>
                     </div>
                   </div>
@@ -257,7 +322,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.cost}} PLN</strong>
+                        <strong id="cost">{{data.cost}} PLN</strong>
                       </p>
                     </div>
                   </div>
@@ -284,7 +349,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.hot_water}} L</strong>
+                        <strong id="hot_water">{{data.hot_water}} L</strong>
                       </p>
                     </div>
                   </div>
@@ -311,7 +376,7 @@
                   <div class="col">
                     <div>
                       <p class="text-center" style="font-size: 30px">
-                        <strong>{{data.pv_eff}} kW</strong>
+                        <strong id="pv_eff">{{data.pv_eff}} kW</strong>
                       </p>
                     </div>
                   </div>

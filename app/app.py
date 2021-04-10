@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template, url_for, redirect, request
+from flask_socketio import SocketIO, send
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from models import User
 
@@ -9,6 +10,7 @@ import requests as r
 app = Flask(__name__)
 app.config["DEBUG"] = True
 app.config["SECRET_KEY"] = "BETON-POLSKA-GUROM"
+socketio = SocketIO(app, cors_allowed_origins="http://127.0.0.1:5000")
 login = LoginManager(app)
 
 @login.user_loader
@@ -69,5 +71,16 @@ def main(id):
 def page_not_found(e):
     return redirect('/login')
 
+@socketio.on('connect_event')
+def handle_connect_event(data):
+    id = data['id']
+    print("Connected from {}".format(id))
+
+@socketio.on('message')
+def handle_message(message):
+    if message == "update":
+        data = json.loads(r.get('http://localhost:3000/home/{}'.format(current_user.id)).text)
+        send(data, json=True)
+
 if __name__ == "__main__":
-    app.run()
+    socketio.run(app)
