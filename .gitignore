@@ -1,7 +1,7 @@
 .vscode
 /env
 database.db
-
-
-
+app/__pycache__
+__pycache__/
+api/__pycache__
 .idea/
